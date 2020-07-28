@@ -1,5 +1,5 @@
-#Create a scrapbook.
+Create a scrapbook.
 
-----------------
+---
 
-#Criar uma pagina de recados.
+Criar uma pagina de recados.
