@@ -14,9 +14,19 @@ app.get("/scraps", (request, response) => {
 
   const results = title
     ? scraps.filter((scrap) => scrap.title.includes(title))
-    : scraps
+    : scraps;
 
   return response.json(results);
+});
+
+app.post("/scraps", (request, response) => {
+  const { title, message } = request.body;
+
+  const scrap = { id: uuid(), title, message };
+
+  scraps.push(scrap);
+
+  return response.json(scrap);
 });
 
 const port = 3333;
