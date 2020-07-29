@@ -8,7 +8,7 @@ const { uuid } = require("uuidv4");
 
 const scraps = [];
 
-// listar scraps
+// Método para listar recados
 app.get("/scraps", (request, response) => {
   const { title } = request.query;
 
@@ -19,7 +19,7 @@ app.get("/scraps", (request, response) => {
   return response.json(results);
 });
 
-// criar scrap
+// Método para criar recados
 app.post("/scraps", (request, response) => {
   const { title, message } = request.body;
 
@@ -30,7 +30,7 @@ app.post("/scraps", (request, response) => {
   return response.json(scrap);
 });
 
-// editar scrap
+// Método para editar recados
 app.put("/scraps/:id", (request, response) => {
   const { id } = request.params;
   const { title, message } = request.body;
@@ -52,7 +52,7 @@ app.put("/scraps/:id", (request, response) => {
   return response.json(scrap);
 });
 
-// deletar scrap
+// Método para deletar recados
 app.delete("/scraps/:id", (request, response) => {
   const { id } = request.params;
 
