@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-const express = require("Express");
-const app = express();
-
-=======
 const express = require("express");
 const { response } = require("express");
 const app = express();
@@ -72,7 +67,6 @@ app.delete("/scraps/:id", (request, response) => {
   return response.status(204).send();
 });
 
->>>>>>> 47bf3925aa2262f4dcda07ebc5568f4d23a3f523
 const port = 3333;
 
 app.listen(3333, () => {
