@@ -52,6 +52,21 @@ app.put("/scraps/:id", (request, response) => {
   return response.json(scrap);
 });
 
+// deletar scrap
+app.delete("/scraps/:id", (request, response) => {
+  const { id } = request.params;
+
+  const scrapIndex = scraps.findIndex((scrap) => scrap.id === id);
+
+  if (scrapIndex < 0) {
+    return response.status(400).json({ error: "scrap not found." });
+  }
+
+  scraps.splice(scrapIndex, 1);
+
+  return response.status(204).send();
+});
+
 const port = 3333;
 
 app.listen(3333, () => {
