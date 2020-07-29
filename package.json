@@ -4,7 +4,13 @@
   "main": "src/main.js",
   "repository": "https://github.com/jeanmauricio96/simple-scrapbook-api",
   "author": "rodrigomonteiror10 <rodrigomonteiror10@gmail.com>",
+  "scripts": {
+    "dev": "nodemon"
+  },
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
