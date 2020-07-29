@@ -1,10 +1,10 @@
-# Desafio API Scrapbook 
+# Desafio API Scrapbook
 
 Programa starter | Growdev
 
 ---
 
-A API deve conter:
+## A API deve conter:
 
 - Método para listar recados;
 
