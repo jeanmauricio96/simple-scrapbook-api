@@ -31,6 +31,20 @@ function validateScrapId(request, response, next) {
 
   next();
 }
+
+function validateScrapTitleMessage(request, response, next) {
+  const { title, message } = request.body
+
+  if (!title) {
+    return response.json({ error: `Título não informado` })
+  } else if (!message) {
+    return response.json({ error: `Mensagem não informada` })
+  }
+
+  next();
+
+}
+
 app.use(logRequest);
 
 // Método para listar recados
@@ -45,7 +59,7 @@ app.get("/scraps", (request, response) => {
 });
 
 // Método para criar recados
-app.post("/scraps", (request, response) => {
+app.post("/scraps", validateScrapTitleMessage, (request, response) => {
   const { title, message } = request.body;
 
   const scrap = { id: uuid(), title, message };
