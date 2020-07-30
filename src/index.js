@@ -8,6 +8,7 @@ const { uuid, isUuid } = require("uuidv4");
 
 const scraps = [];
 
+// Mmiddleware para exibir log com o tempo das requisições
 function logRequest(request, response, next) {
   const { method, url } = request;
 
@@ -20,6 +21,7 @@ function logRequest(request, response, next) {
   console.timeEnd(logLabel);
 }
 
+// Middleware para validar se o uid do scrap é válido
 function validateScrapId(request, response, next) {
   const { id } = request.params;
 
@@ -32,6 +34,7 @@ function validateScrapId(request, response, next) {
   next();
 }
 
+// Middleware para validar se title e message foram informados
 function validateScrapTitleMessage(request, response, next) {
   const { title, message } = request.body
 
