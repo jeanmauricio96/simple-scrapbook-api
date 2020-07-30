@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "repository": "https://github.com/jeanmauricio96/simple-scrapbook-api.git",
+  "author": "Jean Souza <jeanmauricio96@gmail.com>"
 }
-

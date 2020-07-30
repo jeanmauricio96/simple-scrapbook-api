@@ -4,9 +4,34 @@ const app = express();
 
 app.use(express.json());
 
-const { uuid } = require("uuidv4");
+const { uuid, isUuid } = require("uuidv4");
 
 const scraps = [];
+
+function logRequest(request, response, next) {
+  const { method, url } = request;
+
+  const logLabel = `[${method.toUpperCase()}] ${url}`;
+
+  console.time(logLabel);
+
+  next(); // Próximo middleware
+
+  console.timeEnd(logLabel);
+}
+
+function validateScrapId(request, response, next) {
+  const { id } = request.params;
+
+  if (!isUuid(id)) {
+    return response
+      .status(400)
+      .json({ error: `Param sent is not a valid UUID` });
+  }
+
+  next();
+}
+app.use(logRequest);
 
 // Método para listar recados
 app.get("/scraps", (request, response) => {
@@ -31,7 +56,7 @@ app.post("/scraps", (request, response) => {
 });
 
 // Método para editar recados
-app.put("/scraps/:id", (request, response) => {
+app.put("/scraps/:id", validateScrapId, (request, response) => {
   const { id } = request.params;
   const { title, message } = request.body;
 
@@ -53,7 +78,7 @@ app.put("/scraps/:id", (request, response) => {
 });
 
 // Método para deletar recados
-app.delete("/scraps/:id", (request, response) => {
+app.delete("/scraps/:id", validateScrapId, (request, response) => {
   const { id } = request.params;
 
   const scrapIndex = scraps.findIndex((scrap) => scrap.id === id);
