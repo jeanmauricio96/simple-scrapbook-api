@@ -1,6 +1,5 @@
 # Desafio API Scrapbook :rocket:
 
-
 ## :pencil: A API deve conter:
 
 - Método para listar recados;
@@ -13,7 +12,6 @@
 
 - Filtro de recados por título
 
-
 ## :desktop_computer: Como executar a API
 
 **Preparar o ambiente**
@@ -22,10 +20,9 @@
 
 - Abrir repositório no `Vs Code` (ou editor de sua preferência)
 
-- No terminal > rodar o comando `yarn install`
+- No terminal > rodar o comando `yarn`
 
 - No terminal > rodar o comando `yarn dev`
-
 
 **Configurar rotas no insommnia**
 
@@ -37,7 +34,6 @@
 
 - Criar rota `DEL` com `base_url` + `/scraps/`
 
-
 ## :biohazard: Como testar rotas
 
 **:purple_circle: GET | Método para listar scraps**
@@ -47,7 +43,6 @@
 - Após pressionar o botão **SEND** na tela de saída será exibido um json com todos os scraps (se houverem cadastros)
 
 - Para filtrar um scrap por título basta informar o name `title` como value desejado no menu **query**
-
 
 **:green_circle: POST | Método para criar scraps**
 
@@ -60,16 +55,15 @@
 }
 ```
 
-- Após pressionar o botão **SEND** na tela de saída será exibido um json com *id único* + *titulo informado* + *mensagem informada* do scrap criado.
-
+- Após pressionar o botão **SEND** na tela de saída será exibido um json com _id único_ + _titulo informado_ + _mensagem informada_ do scrap criado.
 
 **:orange_circle: PUT | Método para editar scraps**
 
 - Na rota `PUT` devem ser informados os itens abaixo:
 
- - No final da url `base_url` + `/scraps` deve ser iformado o `id` do scrap a ser editado
- 
- - Deve ser selecionado o formato de entrada `JSON` e informados os novos valores de `title` e `message` desejados | Ex:
+- No final da url `base_url` + `/scraps` deve ser iformado o `id` do scrap a ser editado
+
+- Deve ser selecionado o formato de entrada `JSON` e informados os novos valores de `title` e `message` desejados | Ex:
 
 ```
 {
@@ -78,8 +72,7 @@
 }
 ```
 
-- Após pressionar o botão **SEND** na tela de saída será exibido um json com *id único* + *novo titulo informado* + *novo mensagem informada* do scrap alterado.
-
+- Após pressionar o botão **SEND** na tela de saída será exibido um json com _id único_ + _novo titulo informado_ + _novo mensagem informada_ do scrap alterado.
 
 **:red_circle: DEL | Método para deletar scraps**
 

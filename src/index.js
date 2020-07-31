@@ -36,16 +36,15 @@ function validateScrapId(request, response, next) {
 
 // Middleware para validar se title e message foram informados
 function validateScrapTitleMessage(request, response, next) {
-  const { title, message } = request.body
+  const { title, message } = request.body;
 
   if (!title) {
-    return response.json({ error: `Título não informado` })
+    return response.status(400).json({ error: `Título não informado` });
   } else if (!message) {
-    return response.json({ error: `Mensagem não informada` })
+    return response.status(400).json({ error: `Mensagem não informada` });
   }
 
   next();
-
 }
 
 app.use(logRequest);
@@ -58,7 +57,7 @@ app.get("/scraps", (request, response) => {
     ? scraps.filter((scrap) => scrap.title.includes(title))
     : scraps;
 
-  return response.json(results);
+  return response.status(200).json(results);
 });
 
 // Método para criar recados
@@ -69,7 +68,7 @@ app.post("/scraps", validateScrapTitleMessage, (request, response) => {
 
   scraps.push(scrap);
 
-  return response.json(scrap);
+  return response.status(201).json(scrap);
 });
 
 // Método para editar recados
@@ -80,7 +79,7 @@ app.put("/scraps/:id", validateScrapId, (request, response) => {
   const scrapIndex = scraps.findIndex((scrap) => scrap.id == id);
 
   if (scrapIndex < 0) {
-    return response.status(400).json({ error: "scrap not found." });
+    return response.status(404).json({ error: "scrap not found." });
   }
 
   const scrap = {
@@ -91,7 +90,7 @@ app.put("/scraps/:id", validateScrapId, (request, response) => {
 
   scraps[scrapIndex] = scrap;
 
-  return response.json(scrap);
+  return response.status(202).json(scrap);
 });
 
 // Método para deletar recados
@@ -101,7 +100,7 @@ app.delete("/scraps/:id", validateScrapId, (request, response) => {
   const scrapIndex = scraps.findIndex((scrap) => scrap.id === id);
 
   if (scrapIndex < 0) {
-    return response.status(400).json({ error: "scrap not found." });
+    return response.status(404).json({ error: "scrap not found." });
   }
 
   scraps.splice(scrapIndex, 1);
