@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const { response } = require("express");
 const app = express();
@@ -110,8 +112,8 @@ app.delete("/scraps/:id", validateScrapId, (request, response) => {
   return response.status(204).send();
 });
 
-const port = 3333;
+const port = process.env.PORT || 3333;
 
-app.listen(3333, () => {
+app.listen(port, () => {
   console.log(`Server up and running on PORT ${port}`);
 });
