@@ -3,11 +3,11 @@ require("dotenv").config();
 const express = require("express");
 const { response } = require("express");
 const app = express();
+const cors = require("cors");
 
 app.use(express.json());
+app.use(cors());
 
-const cors = require("cors");
-app.use(cors);
 const { uuid, isUuid } = require("uuidv4");
 
 const scraps = [];
