@@ -4,11 +4,10 @@ const express = require("express");
 const { response } = require("express");
 const app = express();
 const cors = require("cors");
+const { uuid, isUuid } = require("uuidv4");
 
 app.use(express.json());
 app.use(cors());
-
-const { uuid, isUuid } = require("uuidv4");
 
 const scraps = [];
 
@@ -38,19 +37,6 @@ function validateScrapId(request, response, next) {
   next();
 }
 
-// Middleware para validar se title e message foram informados
-function validateScrapTitleMessage(request, response, next) {
-  const { title, message } = request.body;
-
-  if (!title) {
-    return response.status(400).json({ error: `Título não informado` });
-  } else if (!message) {
-    return response.status(400).json({ error: `Mensagem não informada` });
-  }
-
-  next();
-}
-
 app.use(logRequest);
 
 // Método para listar recados
@@ -65,14 +51,14 @@ app.get("/scraps", (request, response) => {
 });
 
 // Método para criar recados
-app.post("/scraps", validateScrapTitleMessage, (request, response) => {
+app.post("/scraps", (request, response) => {
   const { title, message } = request.body;
 
   const scrap = { id: uuid(), title, message };
 
   scraps.push(scrap);
 
-  return response.status(201).json(scrap);
+  return response.json(scrap);
 });
 
 // Método para editar recados
